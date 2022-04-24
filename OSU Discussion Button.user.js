@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         OSU Discussion Button
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  try to take over the world!
 // @author       Calvaria
 // @match        https://osu.ppy.sh/beatmapsets/*
@@ -41,9 +41,13 @@
     function insertButton() {
         let needInsert = $('.beatmapset-header__buttons').length == 1 && $('.beatmapset-header__buttons')[0].innerHTML.indexOf('/download"') && $('.btn-discussion-instert').length === 0;
         if (needInsert) {
-            $('.beatmapset-header__buttons').append(
-                '<a class="btn-discussion-instert btn-osu-big btn-osu-big--beatmapset-header " href="https://osu.ppy.sh/beatmapsets/' + getBeatmapId() + '/discussion" data-turbolinks="false"><span class="btn-osu-big__content"><span class="btn-osu-big__left"><span class="btn-osu-big__text-top">Discussion</span></span><span class="btn-osu-big__icon"><span class="fa fa-fw"><span class="fas fa-comments"></span></span></span></span></a>'
-            );
+            var append_str = '<a class="btn-discussion-instert btn-osu-big btn-osu-big--beatmapset-header " href="https://osu.ppy.sh/beatmapsets/' + getBeatmapId() + '/discussion" data-turbolinks="false"><span class="btn-osu-big__content"><span class="btn-osu-big__left"><span class="btn-osu-big__text-top">Discussion</span></span><span class="btn-osu-big__icon"><span class="fa fa-fw"><span class="fas fa-comments"></span></span></span></span></a>'
+            if ($('.beatmapset-header__more').length === 1){
+                $('.beatmapset-header__more').before(append_str);
+            }
+            else {
+                $('.beatmapset-header__buttons').append(append_str);
+            }
         }
     }
 
