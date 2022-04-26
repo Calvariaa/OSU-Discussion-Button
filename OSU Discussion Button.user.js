@@ -1,36 +1,18 @@
 // ==UserScript==
 // @name         OSU Discussion Button
-// @namespace    http://tampermonkey.net/
-// @version      0.2
-// @description  try to take over the world!
+// @namespace    https://osu.ppy.sh/users/12381096
+// @version      0.3
+// @description  Update 0.3: Fixed mismatch when open #/beatmapsets link for the first time
 // @author       Calvaria
-// @match        https://osu.ppy.sh/beatmapsets/*
-// @icon         https://www.google.com/s2/favicons?sz=64&domain=ppy.sh
+// @match        https://osu.ppy.sh/*
+// @icon         https://osu.ppy.sh/favicon.ico
 // @grant        none
 // ==/UserScript==
 
 (function () {
     'use strict';
 
-    let lastId = -1;
-
     setButtonTimer();
-
-    injectGoogleAnalytics();
-
-    function injectGoogleAnalytics() {
-        let script = document.createElement('script');
-        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-61W3GZ0ZNP';
-        document.body.appendChild(script);
-
-        script = document.createElement('script');
-        script.innerHTML = "window.dataLayer = window.dataLayer || [];\n" +
-            "function gtag(){dataLayer.push(arguments);}\n" +
-            "gtag('js', new Date());\n" +
-            "gtag('config', 'G-61W3GZ0ZNP');";
-        document.body.appendChild(script)
-    }
-
 
     function setButtonTimer() {
         setInterval(function () {
